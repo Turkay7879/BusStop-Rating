@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HW1</string>
+    <string name="textSurvey">Anket</string>
+    <string name="textName">"İsim: "</string>
+    <string name="textHintName">İsminiz</string>
+    <string name="textAge">"Yaş: "</string>
+    <string name="textHintAge">Yaşınız</string>
+    <string name="textGender">"Cinsiyet: "</string>
+    <string name="textRadioMale">Erkek</string>
+    <string name="textRadioFemale">Kadın</string>
+    <string name="textRadioElse">Başka</string>
+    <string name="textFrequency">Bu durağı bir haftada kaç defa kullanıyorsunuz?</string>
+    <string name="textRating">"Lütfen bu durağa bir puan veriniz: "</string>
+    <string name="buttonTextSubmit">Gönder</string>
+    <string name="textToastFrequency">"Sıklık: "</string>
+    <string name="textToastRating">"Puan: "</string>
+    <string name="textCheckBox">Bilgilerimi göndermeyi onaylıyorum.</string>
+</resources>

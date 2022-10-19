@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">HW1</string>
+
+    <string name="textSurvey">Survey</string>
+
+    <string name="textName">Name: </string>
+    <string name="textHintName">Your name</string>
+
+    <string name="textAge">Age: </string>
+    <string name="textHintAge">Your age</string>
+
+    <string name="textGender">Gender: </string>
+    <string name="textRadioMale">Male</string>
+    <string name="textRadioFemale">Female</string>
+    <string name="textRadioElse">Else</string>
+
+    <string name="textFrequency">How many times do you use this bus stop in a week?</string>
+    <string name="textToastFrequency">Frequency: </string>
+    <string-array name="spinnerFrequencies">
+        <item>1-2</item>
+        <item>3-4</item>
+        <item>5-6</item>
+        <item>7-10</item>
+        <item>10+</item>
+    </string-array>
+
+    <string name="textRating">Please give a rating to this bus stop: </string>
+    <string name="textToastRating">Rating: </string>
+    <string name="textDefaultRating" translatable="false">5</string>
+
+    <string name="textCheckBox">I agree to submit my information.</string>
+    <string name="textCheckBoxStatus" translatable="false">CheckBox: </string>
+
+    <string name="buttonTextSubmit">Submit</string>
+</resources>
