@@ -2,6 +2,7 @@ package com.example.hw1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -63,30 +64,13 @@ public class MainActivity extends AppCompatActivity {
         String rating = textViewRating.getText().toString();
         boolean checkBoxStatus = checkBoxAgree.isChecked();
 
-        Toast.makeText(
-                getApplicationContext(),
-                name + ", " + age,
-                Toast.LENGTH_SHORT
-        ).show();
-        Toast.makeText(
-                getApplicationContext(),
-                getString(R.string.textGender) + gender,
-                Toast.LENGTH_SHORT
-        ).show();
-        Toast.makeText(
-                getApplicationContext(),
-                getString(R.string.textToastFrequency) + frequency,
-                Toast.LENGTH_SHORT
-        ).show();
-        Toast.makeText(
-                getApplicationContext(),
-                getString(R.string.textToastRating) + rating,
-                Toast.LENGTH_SHORT
-        ).show();
-        Toast.makeText(
-                getApplicationContext(),
-                getString(R.string.textCheckBoxStatus) + checkBoxStatus,
-                Toast.LENGTH_SHORT
-        ).show();
+        Intent detailsIntent = new Intent(MainActivity.this, FormDetailsActivity.class);
+        detailsIntent.putExtra("name", name);
+        detailsIntent.putExtra("age", age);
+        detailsIntent.putExtra("gender", gender);
+        detailsIntent.putExtra("frequency", frequency);
+        detailsIntent.putExtra("rating", rating);
+        detailsIntent.putExtra("checkBoxStatus", checkBoxStatus);
+        startActivity(detailsIntent);
     }
 }

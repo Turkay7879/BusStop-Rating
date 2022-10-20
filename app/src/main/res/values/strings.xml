@@ -32,4 +32,6 @@
     <string name="textCheckBoxStatus" translatable="false">CheckBox: </string>
 
     <string name="buttonTextSubmit">Submit</string>
+
+    <string name="buttonTextGoBackFromDetails">Go Back</string>
 </resources>
