@@ -11,11 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="32dp"
         android:text="@string/textName"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewBusStopDetailsActivity" />
 
     <TextView
         android:id="@+id/textViewAgeDetailsActivity"
@@ -76,10 +76,22 @@
         android:id="@+id/buttonGoBackDetailsActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="96dp"
         android:onClick="onClickBackButton"
         android:text="@string/buttonTextGoBackFromDetails"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewBusStopDetailsActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="64dp"
+        android:gravity="center_vertical"
+        android:text="@string/textViewBusStopName"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

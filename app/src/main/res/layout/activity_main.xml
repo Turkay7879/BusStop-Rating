@@ -62,7 +62,7 @@
         android:layout_width="360dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:text="@string/textSurvey"
@@ -77,12 +77,12 @@
         android:layout_width="96dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="8dp"
         android:gravity="center_vertical"
         android:text="@string/textName"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewBusStopName" />
 
     <TextView
         android:id="@+id/textViewAge"
@@ -113,14 +113,14 @@
         android:layout_width="272dp"
         android:layout_height="48dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="8dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/textHintName"
         android:inputType="textPersonName"
         android:textColorHint="#757575"
         app:layout_constraintStart_toEndOf="@+id/textViewName"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewBusStopName" />
 
     <RadioGroup
         android:id="@+id/radioGroupGenders"
@@ -181,7 +181,7 @@
         android:layout_height="64dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="48dp"
         android:onClick="onClickSubmit"
         android:text="@string/buttonTextSubmit"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -201,5 +201,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBarRating" />
+
+    <TextView
+        android:id="@+id/textViewBusStopName"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:text="@string/textViewBusStopName"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

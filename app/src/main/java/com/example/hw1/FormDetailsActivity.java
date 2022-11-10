@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class FormDetailsActivity extends AppCompatActivity {
 
-    public TextView textViewName, textViewAge, textViewGender, textViewFreq, textViewRating, textViewAgree;
+    public TextView textViewBusStopName, textViewName, textViewAge, textViewGender, textViewFreq, textViewRating, textViewAgree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class FormDetailsActivity extends AppCompatActivity {
 
         Intent detailsFromMainIntent = getIntent();
 
+        textViewBusStopName = (TextView) findViewById(R.id.textViewBusStopDetailsActivity);
         textViewName = (TextView) findViewById(R.id.textViewNameDetailsActivity);
         textViewAge = (TextView) findViewById(R.id.textViewAgeDetailsActivity);
         textViewGender = (TextView) findViewById(R.id.textViewGenderDetailsActivity);
@@ -25,6 +26,7 @@ public class FormDetailsActivity extends AppCompatActivity {
         textViewRating = (TextView) findViewById(R.id.textViewRatingDetailsActivity);
         textViewAgree = (TextView) findViewById(R.id.textViewFormAgreedDetailsActivity);
 
+        textViewBusStopName.setText(detailsFromMainIntent.getStringExtra("busStopName"));
         textViewName.setText(getString(R.string.textName) + detailsFromMainIntent.getStringExtra("name"));
         textViewAge.setText(getString(R.string.textAge) + detailsFromMainIntent.getStringExtra("age"));
         textViewGender.setText(getString(R.string.textGender) + detailsFromMainIntent.getStringExtra("gender"));

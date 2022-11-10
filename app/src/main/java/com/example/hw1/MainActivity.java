@@ -18,15 +18,21 @@ public class MainActivity extends AppCompatActivity {
     public EditText editTextName, editTextAge;
     public RadioGroup radioGroupGenders;
     public Spinner spinnerFrequency;
-    public TextView textViewRating;
+    public TextView textViewBusStopName, textViewRating;
     public SeekBar seekBarRating;
     public CheckBox checkBoxAgree;
+
+    private String busStop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent mapsActivityIntent = getIntent();
+        busStop = getString(R.string.textViewBusStopName) + " " + mapsActivityIntent.getStringExtra("busStopName");
+
+        textViewBusStopName = (TextView) findViewById(R.id.textViewBusStopName);
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextAge = (EditText) findViewById(R.id.editTextAge);
         radioGroupGenders = (RadioGroup) findViewById(R.id.radioGroupGenders);
@@ -35,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         seekBarRating = (SeekBar) findViewById(R.id.seekBarRating);
         checkBoxAgree = (CheckBox) findViewById(R.id.checkBoxAgree);
 
+        textViewBusStopName.setText(busStop);
         seekBarRating.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -65,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         boolean checkBoxStatus = checkBoxAgree.isChecked();
 
         Intent detailsIntent = new Intent(MainActivity.this, FormDetailsActivity.class);
+        detailsIntent.putExtra("busStopName", busStop);
         detailsIntent.putExtra("name", name);
         detailsIntent.putExtra("age", age);
         detailsIntent.putExtra("gender", gender);
