@@ -1,9 +1,11 @@
 package com.example.hw1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -12,6 +14,14 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public SeekBar seekBarRating;
     public CheckBox checkBoxAgree;
 
-    private String busStop;
+    private String[] busStopInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent mapsActivityIntent = getIntent();
-        busStop = getString(R.string.textViewBusStopName) + " " + mapsActivityIntent.getStringExtra("busStopName");
+        busStopInfo = mapsActivityIntent.getStringExtra("busStopInfo").split(",");
+        String stopName = getString(R.string.textViewBusStopName) + " " + busStopInfo[0];
 
         textViewBusStopName = (TextView) findViewById(R.id.textViewBusStopName);
         editTextName = (EditText) findViewById(R.id.editTextName);
@@ -41,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         seekBarRating = (SeekBar) findViewById(R.id.seekBarRating);
         checkBoxAgree = (CheckBox) findViewById(R.id.checkBoxAgree);
 
-        textViewBusStopName.setText(busStop);
+        textViewBusStopName.setText(stopName);
         seekBarRating.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -71,14 +82,41 @@ public class MainActivity extends AppCompatActivity {
         String rating = textViewRating.getText().toString();
         boolean checkBoxStatus = checkBoxAgree.isChecked();
 
-        Intent detailsIntent = new Intent(MainActivity.this, FormDetailsActivity.class);
-        detailsIntent.putExtra("busStopName", busStop);
-        detailsIntent.putExtra("name", name);
-        detailsIntent.putExtra("age", age);
-        detailsIntent.putExtra("gender", gender);
-        detailsIntent.putExtra("frequency", frequency);
-        detailsIntent.putExtra("rating", rating);
-        detailsIntent.putExtra("checkBoxStatus", checkBoxStatus);
-        startActivity(detailsIntent);
+        if (checkBoxStatus) {
+            if (name.equals("") || age.equals("") || gender.equals("") || frequency.equals("") || rating.equals("")) {
+                Toast.makeText(this, "Missing Information!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            Map<String, Object> survey = new HashMap<>();
+            survey.put("name", name);
+            survey.put("age", Integer.valueOf(age));
+            survey.put("gender", gender);
+            survey.put("frequency", frequency);
+            survey.put("rating", Integer.valueOf(rating));
+            survey.put("stopName", busStopInfo[0]);
+            survey.put("stopPlusCode", busStopInfo[1]);
+
+            db.collection("busStopSurveys")
+                .add(survey)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(MainActivity.this, "Survey Submitted!", Toast.LENGTH_SHORT).show();
+                        Log.d("Submitted Data", "Id: " + documentReference.getId());
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, "Survey wasn't submitted", Toast.LENGTH_SHORT).show();
+                        Log.w("Submission Error", e.getLocalizedMessage());
+                    }
+                });
+        } else {
+            Toast.makeText(this, "You need to agree to submit!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

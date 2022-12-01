@@ -52,7 +52,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (int i = 0; i < busStops.length; i++) {
             LatLng coord = new LatLng(busStops[i].getLatitude(), busStops[i].getLongitude());
             String markerTitle = busStops[i].getName() + ", " + busStops[i].getPlusCode();
-            String markerTag = busStops[i].getName();
+            String markerTag = busStops[i].getName() + "," + busStops[i].getPlusCode();
 
             busStopCoordinates.add(coord);
             Marker marker = mMap.addMarker(new MarkerOptions().position(coord).title(markerTitle));
@@ -76,7 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onInfoWindowClick(@NonNull Marker marker) {
         Intent surveyIntent = new Intent(MapsActivity.this, MainActivity.class);
-        surveyIntent.putExtra("busStopName", marker.getTag().toString());
+        surveyIntent.putExtra("busStopInfo", marker.getTag().toString());
         startActivity(surveyIntent);
     }
 
