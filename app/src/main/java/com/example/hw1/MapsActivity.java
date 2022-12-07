@@ -29,7 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private final float MAP_ZOOM = 16.0f;
 
     private BusStop[] busStops;
-    private List<LatLng> busStopCoordinates = new ArrayList<>();
+    private final List<LatLng> busStopCoordinates = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         // Connect bus stops with polyline
-        Polyline busStopsLine = mMap.addPolyline(new PolylineOptions().addAll(busStopCoordinates));
+        mMap.addPolyline(new PolylineOptions().addAll(busStopCoordinates));
 
         // Initial map coordinates for Google Maps camera to focus on
         LatLng initialZoomCoord = new LatLng(busStops[0].getLatitude(), busStops[0].getLongitude());

@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(MainActivity.this, "Survey Submitted!", Toast.LENGTH_SHORT).show();
                         Log.d("Submitted Data", "Id: " + documentReference.getId());
+                        Log.d("Content", "Name: " + name + ", Age: " + age + ", Gender: " + gender + ", Rating: " + rating);
                         finish();
                     }
                 })
