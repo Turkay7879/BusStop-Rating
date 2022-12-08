@@ -33,7 +33,7 @@
 
     <string name="buttonTextSubmit">Submit</string>
 
-    <string name="buttonTextGoBackFromDetails">Go Back</string>
+    <string name="buttonTextGoBackFromDetails">Finish</string>
     <string name="title_activity_maps" translatable="false">MapsActivity</string>
 
     <string name="textViewBusStopName">Bus Stop: </string>

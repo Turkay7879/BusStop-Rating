@@ -16,6 +16,6 @@
     <string name="textToastFrequency">"Sıklık: "</string>
     <string name="textToastRating">"Puan: "</string>
     <string name="textCheckBox">Bilgilerimi göndermeyi onaylıyorum.</string>
-    <string name="buttonTextGoBackFromDetails">Geri Git</string>
+    <string name="buttonTextGoBackFromDetails">Bitir</string>
     <string name="textViewBusStopName">Durak:</string>
 </resources>

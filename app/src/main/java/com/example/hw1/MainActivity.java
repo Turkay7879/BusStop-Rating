@@ -33,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
     public CheckBox checkBoxAgree;
 
     private String[] busStopInfo;
+    public static char goBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        goBack = 'N';
 
         Intent mapsActivityIntent = getIntent();
         busStopInfo = mapsActivityIntent.getStringExtra("busStopInfo").split(",");
@@ -105,8 +107,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(MainActivity.this, "Survey Submitted!", Toast.LENGTH_SHORT).show();
                         Log.d("Submitted Data", "Id: " + documentReference.getId());
-                        Log.d("Content", "Name: " + name + ", Age: " + age + ", Gender: " + gender + ", Rating: " + rating);
-                        finish();
+
+                        Intent detailsIntent = new Intent(MainActivity.this, FormDetailsActivity.class);
+                        detailsIntent.putExtra("busStopName", busStopInfo[0]);
+                        detailsIntent.putExtra("name", name);
+                        detailsIntent.putExtra("age", age);
+                        detailsIntent.putExtra("gender", gender);
+                        detailsIntent.putExtra("frequency", frequency);
+                        detailsIntent.putExtra("rating", rating);
+                        goBack = 'I';
+                        startActivity(detailsIntent);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -118,6 +128,15 @@ public class MainActivity extends AppCompatActivity {
                 });
         } else {
             Toast.makeText(this, "You need to agree to submit!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (goBack == 'Y') {
+            goBack = 'N';
+            finish();
         }
     }
 }
